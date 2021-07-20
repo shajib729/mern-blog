@@ -1,0 +1,99 @@
+.container{
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.mt-80{
+    margin-top: 80px !important;
+}
+.mt-100{
+    margin-top: 100px !important;
+}
+.group{
+    margin-bottom: 1.3rem;
+
+    &_control{
+        width:100%;
+        padding: 1.5rem;
+        border: none;
+        outline: none;
+        background: $silver;
+        border-bottom: 2px solid transparent;
+        transition: .3s;
+
+        &:focus{
+            border-color: $green;
+        }
+    }
+}
+.btn{
+    outline: none;
+    border: none;
+    color: $white;
+    height: 4rem;
+    padding: 1.2rem 1rem;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 1.6rem;
+    cursor: pointer;
+}
+.btn_default{
+    background: $green;
+}
+.btn_block{
+    width: 100%;
+    height: 5rem !important;
+}
+.card{
+    background-color: $white;
+    padding: 1.5rem;
+
+    &_h3{
+        font-size: 1.6rem;
+        font-weight: 400;
+        margin-bottom: 2rem;
+    }
+}
+label{
+    display: block;
+    font-size: 1.3rem;
+    margin-bottom: .4rem;
+}
+#image{
+    display: none;
+}
+.image_label{
+    display: block;
+    background-color: #b2bec3;
+    color: $white;
+    padding: 1.5rem;
+    width: 100%;
+    cursor: pointer;
+}
+.p-15{
+  padding: 1.5rem;  
+}
+.pl-15{
+  padding-left: 1.5rem;
+  
+  @media (max-width:600px) {
+      padding-left: 0 !important;
+      padding: 1rem;
+  }
+}
+.pr-15{
+  padding-right: 1.5rem; 
+   
+  @media (max-width:600px) {
+    padding-right: 0 !important;
+    padding: 1rem;
+} 
+}
+.imagePreview{
+    width:100%;
+    height: auto;
+
+    img{
+        max-width: 100%;
+        height: auto;
+    }
+}

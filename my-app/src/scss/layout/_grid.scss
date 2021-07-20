@@ -1,0 +1,14 @@
+.row{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+@for $i from 1 to 12 {
+    .col-#{$i}{
+        width: 100% / 12 * $i ;
+
+       @media (max-width:880px) {
+           width: 100%;
+       }
+    }
+}

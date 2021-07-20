@@ -1,0 +1,34 @@
+section.pagination{
+    padding-left: 2rem;
+    margin: 5rem auto;
+
+    ul{
+        list-style: none;
+        display: flex;
+            transition: .3s;
+
+        li a{
+            border: 1px solid gray;
+            border-left: none;
+                text-decoration: none;
+                display: block;
+                font-size: 1.5rem;
+                padding:8px 12px;
+        }
+
+        li:first-child a{
+            border-left: 1px solid gray;
+            border-radius: 5px 0 0 5px;
+            overflow: hidden;
+        }
+        li:last-child a{
+            border-radius:0 5px 5px 0;
+            overflow: hidden;
+        }
+        
+        .active_page{
+            background-color: gray;
+            color: white;
+        }
+    }
+}

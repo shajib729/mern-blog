@@ -1,0 +1,21 @@
+
+
+
+
+@import 'scss/abstracts/variables';
+@import 'scss/components/navbar';
+@import 'scss/components/register';
+@import 'scss/components/singleUser';
+@import 'scss/components/users';
+@import 'scss/components/pagination';
+@import 'scss/components/PostPage';
+@import 'scss/components/userEdit';
+@import 'Skeleton/Skeleton';
+@import 'scss/components/dashboard';
+@import 'scss/components/home';
+@import 'scss/utils/utils';
+@import 'scss/layout/grid';
+
+// mobile responsive 
+@import 'scss/abstracts/mixin';
+@import 'scss/base/reset.scss';

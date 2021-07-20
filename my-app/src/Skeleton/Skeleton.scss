@@ -1,0 +1,56 @@
+section.skeleton{
+    // width: 100%;
+
+    .card{
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 0 15px #00000011;
+        border: 1px solid rgba(211, 211, 211, 0.254);
+        border-radius: 5px;
+        width: 100%;
+
+        .post_img{
+            width: 100%;
+            height: 250px;
+            background-color: lightgray;
+            border-radius: 10px;
+        }
+
+        .post_title{
+            width: 100%;
+            height: 20px;
+            border-radius: 5px;
+            background-color: lightgray;
+            margin: 10px 0;
+        }
+
+        .post_description{
+            width: 50%;
+            height: 20px;
+            border-radius: 4px;
+            background-color: lightgray;
+        }
+
+        .speaner{
+            position: absolute;
+            top: 150px;
+            left: 0px;
+            height: 20%;
+            width: 150%;
+            background:linear-gradient(90deg,rgba(255, 255, 255, 0.19),transparent);
+            z-index: 9;
+            transform: skewX(-20deg);
+            animation: loader 1s infinite ease-in;
+        }
+        @keyframes loader {
+            0%{
+                transform:rotate(45deg) translatey(-400%) skewX(-30deg);
+            }
+            100%{
+                transform:rotate(45deg) translatey(430%) skewX(-30deg);
+            }
+        }
+
+    }
+}
+       
