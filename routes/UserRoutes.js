@@ -35,7 +35,7 @@ router.post('/login',loginValidations,login)
 
 router.get('/getUser/:id', sendData)
 
-router.get('/users', users)
+router.get('/userss', users)
 
 router.get('/user/:userName', user)
 

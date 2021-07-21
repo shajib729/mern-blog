@@ -113,7 +113,7 @@ const UserEdit = () => {
     return (
         <section className="container mt-100 edit_user_section">
             <Helmet>
-                <title>Edit Post</title>
+                <title>Edit Profile</title>
             </Helmet>
             <Toaster
             position="top-center"

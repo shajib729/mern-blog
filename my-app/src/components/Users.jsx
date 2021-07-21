@@ -3,13 +3,14 @@ import axios from 'axios'
 import { FaFacebook, FaGithub } from 'react-icons/fa';
 import {Link} from 'react-router-dom'
 import profile from '../image/default_profile.png'
+import { Helmet } from 'react-helmet'
 
 const Users = () => {
 
     const [allUsers,setAllUsers]=useState()
 
     const users = async () => {
-        const res = await axios.get('/users')
+        const res = await axios.get('/userss')
         setAllUsers(res.data.message);
     }
 
@@ -19,6 +20,9 @@ const Users = () => {
 
     return allUsers?(
         <section className="mt-100 container users_section">
+            <Helmet>
+                <title>Users</title>
+            </Helmet>
             <div className="row">
                 {
                 allUsers.map(user => (
