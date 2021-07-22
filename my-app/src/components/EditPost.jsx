@@ -147,7 +147,6 @@ const EditPost = () => {
                                 onChange={handleIChange} placeholder="Meta Description..." className="group_control" cols="30" rows="10" maxLength="150"></textarea>
                                 <p>{state.description?state.description.length:0}</p>
                             </div>
-                            <button className="btn btn-default" style={{background:"green"}}>Submit</button>
                         </div>
                     </div>
 
