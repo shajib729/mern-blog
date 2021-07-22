@@ -6,7 +6,7 @@ const SingleUserProfile = ({user}) => {
     return user?(
         <>
             <label htmlFor="profile_img" className="profile_image">
-                <img src={user.image?`../public/${user.image}`:profile} alt="profile" />
+                <img src={user.image?`../images/${user.image}`:profile} alt="profile" />
             </label>
             <div className="userName">
                 <p>Username : </p><p>{user.userName}</p>

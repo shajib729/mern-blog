@@ -42,7 +42,7 @@ export const Home = () => {
                         post.image ? (
                             <div className="card">
                             <div className="post-img">
-                                <img src={`../public/${post.image}`} alt="Can't get post image." />
+                                <img src={`../images/${post.image}`} alt="Can't get post image." />
                             </div>
                             <div className="time">
                                 {moment(post.updatedAt).fromNow()}
