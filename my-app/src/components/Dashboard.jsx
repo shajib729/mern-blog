@@ -112,7 +112,7 @@ const Dashboard = () => {
                                 {moment(post.updatedAt).fromNow()}
                             </div>
                             <div className="post_thumb">
-                                <img src={`../public/${post.image}`} alt="Can't get post image." />
+                                <img src={`../images/${post.image}`} alt="Can't get post image." />
                             </div>
                             {/* <div className="post_body" dangerouslySetInnerHTML={{__html: post.body}} /> */}
                         </div>
