@@ -49,7 +49,7 @@ const UserProfile = () => {
                 <Link to="/user-edit">Edit Profile</Link>
             </div>
             <label htmlFor="profile_img" className="profile_image">
-                <img src={data.image?`../images/${data.image}`:profile} alt="profile" />
+                <img src={data.image?`../public/${data.image}`:profile} alt="profile" />
             </label>
             <div className="userName">
                 <p>Username : </p><p>{data.userName}</p>

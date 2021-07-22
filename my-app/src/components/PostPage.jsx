@@ -41,7 +41,7 @@ const PostPage = () => {
                     <div className="col-6">
                         <h1>{post.title}</h1>
                         <div className="post_thumb">
-                            <img src={`/images/${post.image}`} alt="" />
+                            <img src={`/public/${post.image}`} alt="" />
                         </div>
                         <div className="post_body" dangerouslySetInnerHTML={{__html: post.body}} />
                     </div>

@@ -123,7 +123,7 @@ const UserEdit = () => {
             <form onSubmit={handleSubmit}>
                 <h1>Edit Your Info</h1>
                 <label htmlFor="profile_img" className="profile_image">
-                    <img src={imagePreview?imagePreview:(state.image?`../images/${state.image}`:profile)} alt="profile" />
+                    <img src={imagePreview?imagePreview:(state.image?`../public/${state.image}`:profile)} alt="profile" />
                     <input type="file" id="profile_img" name="image" onChange={handleFileChange} style={{ display: "none" }} />
                 </label>
                 <div className="group">

@@ -8,6 +8,7 @@ import Pagination from './Pagination';
 import UserProfile from './UserProfile'
 import toast, { Toaster } from 'react-hot-toast';
 import Skeleton from '../Skeleton/Skeleton'
+import moment from 'moment'
 
 const Dashboard = () => {
     const { token, user:{_id}}=useSelector(state=>state.AuthReducer)
@@ -107,8 +108,11 @@ const Dashboard = () => {
                                     <BsTrash onClick={()=>deletePost(post._id)} className="delete_icon"/>
                                 </div>
                             </div>
+                            <div className="time">
+                                {moment(post.updatedAt).fromNow()}
+                            </div>
                             <div className="post_thumb">
-                                <img src={`../images/${post.image}`} alt="Can't get post image." />
+                                <img src={`../public/${post.image}`} alt="Can't get post image." />
                             </div>
                             {/* <div className="post_body" dangerouslySetInnerHTML={{__html: post.body}} /> */}
                         </div>

@@ -29,7 +29,7 @@ const Users = () => {
                     <div className="col-4">
                         <div className="user">
                             <div className="profile">
-                                <img src={user.image?`../images/${user.image}`:profile} alt="" />
+                                <img src={user.image?`../public/${user.image}`:profile} alt="" />
                             </div>
                             <div className="userName">
                                 <p>Username : </p>

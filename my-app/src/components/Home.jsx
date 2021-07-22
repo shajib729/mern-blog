@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {Link} from 'react-router-dom'
 import {Helmet} from "react-helmet"
 import Skeleton from '../Skeleton/Skeleton'
+import moment from 'moment'
 
 export const Home = () => {
 
@@ -41,7 +42,13 @@ export const Home = () => {
                         post.image ? (
                             <div className="card">
                             <div className="post-img">
-                                <img src={`../images/${post.image}`} alt="Can't get post image." />
+                                <img src={`../public/${post.image}`} alt="Can't get post image." />
+                            </div>
+                            <div className="time">
+                                {moment(post.updatedAt).fromNow()}
+                            </div>
+                            <div className="post_author">
+                                Author : {post.userName}
                             </div>
                             <div className="post-info">
                                 <p className="author">{post.name}</p>

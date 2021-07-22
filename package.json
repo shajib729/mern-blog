@@ -6,11 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon app.js",
-    "start":"node app.js",
+    "start": "node app.js",
     "clientInstall": "npm install --prefix my-app",
     "client": "npm start --prefix my-app",
-    "build":"npm run build --prefix my-app",
-    "heroku-postbuild":"npm run clientInstall && npm run build",
+    "build": "npm run build --prefix my-app",
+    "heroku-postbuild": "npm run clientInstall && npm run build",
     "dev": "concurrently \"npm run server\" \"npm run client\" "
   },
   "keywords": [],
@@ -28,6 +28,7 @@
     "html-to-text": "^8.0.0",
     "jsonwebtoken": "^8.5.1",
     "jwt-decode": "^3.1.2",
+    "moment": "^2.29.1",
     "mongoose": "^5.13.2",
     "multer": "^1.4.2",
     "react-hot-toast": "^2.0.0",
