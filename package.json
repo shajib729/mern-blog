@@ -9,7 +9,8 @@
     "start": "node app.js",
     "clientInstall": "npm install --prefix my-app",
     "client": "npm start --prefix my-app",
-    "heroku-postbuild": "npm run clientInstall",
+    "build": "npm run build --prefix my-app",
+    "heroku-postbuild": "npm run clientInstall && npm run build",
     "dev": "concurrently \"npm run server\" \"npm run client\" "
   },
   "keywords": [],
