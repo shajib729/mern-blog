@@ -7,7 +7,7 @@ const imageHandle = (req, res,next)=>{
        
     if (req.files) {
         const file = req.files.image;
-        const fileDir = path.join(__dirname, '../my-app/build/static/images', file.name)
+        const fileDir = path.join(__dirname, '../my-app/build/images', file.name)
 
         file.mv(fileDir, err=> {
             if (err) {
