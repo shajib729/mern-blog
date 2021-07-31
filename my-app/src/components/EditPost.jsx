@@ -18,6 +18,9 @@ const EditPost = () => {
     const [currentImage, setCurrentImage] = useState("Choose Image")
     const [imagePreview, setImagePreview] = useState('');
 
+    const [cloudImage,setCloudeImage]=useState()
+    const [cloudeImageUrl,setCloudeImageUrl]=useState()
+
     const fileHandle = (e) => {
         if (e.target.files.length !== 0) {
          
@@ -27,8 +30,9 @@ const EditPost = () => {
             reader.onloadend = () => {
                 setImagePreview(reader.result);
             }
-            reader.readAsDataURL(e.target.files[0])   
+            reader.readAsDataURL(e.target.files[0])
         }
+        setCloudeImage(e.target.files[0]);
     }
     
     const handleIChange = (e) => {
@@ -52,8 +56,27 @@ const EditPost = () => {
     const editPost = async (e) => {
         e.preventDefault()
 
+        const getImgUrl = new FormData()
+        getImgUrl.append('file',cloudImage)
+        getImgUrl.append('upload_preset',"shajib-cloud")
+        getImgUrl.append('cloud_name', "shajib")
+
+        let resImg=await fetch('https://api.cloudinary.com/v1_1/shajib/image/upload', {
+            method: "post",
+            heades: {
+              'Content-Type':"application/json"  
+            },
+            body:getImgUrl
+        })
+        const dataImg=await resImg.json()
+        // dataImg?setCloudeImageUrl(dataImg):setCloudeImageUrl()
+
+        // console.log(dataImg.url);
+        // console.log(cloudeImageUrl)
+
         const formData = new FormData()
         formData.append("image", state.image)
+        formData.append("imageUrl", dataImg.url)
         formData.append('title',state.title)
         formData.append('description',state.description)
         formData.append('body',value)

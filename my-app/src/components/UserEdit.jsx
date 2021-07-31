@@ -15,6 +15,8 @@ const UserEdit = () => {
     
     const [image, setImage] = useState({image:""})
     const [imagePreview, setImagePreview] = useState();
+    
+    const [cloudImage, setCloudeImage] = useState()
 
     const handleFileChange = (e) => {
         if (e.target.files.length !== 0) {
@@ -25,7 +27,9 @@ const UserEdit = () => {
             reader.onloadend = () => {
                 setImagePreview(reader.result);
             }
-            reader.readAsDataURL(e.target.files[0])   
+            reader.readAsDataURL(e.target.files[0])
+            
+            setCloudeImage(e.target.files[0])
         }
     }
 
@@ -53,8 +57,22 @@ const UserEdit = () => {
     const handleSubmit =async (e) => {
         e.preventDefault();
 
+        const getImgUrl = new FormData()
+        getImgUrl.append('file',cloudImage)
+        getImgUrl.append('upload_preset',"shajib-cloud")
+        getImgUrl.append('cloud_name', "shajib")
+
+        let resImg=await fetch('https://api.cloudinary.com/v1_1/shajib/image/upload', {
+            method: "post",
+            heades: {
+              'Content-Type':"application/json"  
+            },
+            body:getImgUrl
+        })
+        const dataImg=await resImg.json()
+
         const formData = new FormData()
-        formData.append("image", state.image)
+        formData.append("image", dataImg.url)
         formData.append("name", state.name)
         formData.append("userName", state.userName)
         formData.append("email", state.email)
@@ -123,7 +141,7 @@ const UserEdit = () => {
             <form onSubmit={handleSubmit}>
                 <h1>Edit Your Info</h1>
                 <label htmlFor="profile_img" className="profile_image">
-                    <img src={imagePreview?imagePreview:(state.image?`../images/${state.image}`:profile)} alt="profile" />
+                    <img src={imagePreview?imagePreview:(state.image?`${state.image}`:profile)} alt="profile" />
                     <input type="file" id="profile_img" name="image" onChange={handleFileChange} style={{ display: "none" }} />
                 </label>
                 <div className="group">

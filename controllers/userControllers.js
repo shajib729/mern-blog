@@ -149,22 +149,22 @@ const sendData = async (req, res) => {
 
 // update user 
 const update = async (req, res,next) => {
-    const image=req.files
-    const {name,userName,email,facebook,github}=req.body
-    console.log(image);
+    // const image=req.files
+    const {name,userName,email,facebook,github,image}=req.body
+    // console.log(image);
     try {
         if (!name || !userName || !email) {
             res.status(400).json({error:"Info field must be provided."})
         } else {
-            if (req.files) {
-                const updateImage = await User.findByIdAndUpdate({ _id: req.params.id }, {image:req.files.image.name })
-                if (updateImage) {
-                    console.log("updateImage",updateImage);
-                    res.status(200).json({ message: "User Updated Succesfully" })
-                    next()
-                }
-            }
-            const userUpdate = await User.findByIdAndUpdate({ _id: req.params.id }, { name, userName, email, facebook, github})
+            // if (image) {
+            //     const updateImage = await User.findByIdAndUpdate({ _id: req.params.id }, {image:image })
+            //     if (updateImage) {
+            //         // console.log("updateImage",updateImage);
+            //         res.status(200).json({ message: "User Updated Succesfully" })
+            //         next()
+            //     }
+            // }
+            const userUpdate = await User.findByIdAndUpdate({ _id: req.params.id }, { name, userName, email, facebook, github,image})
             if (userUpdate) {
                 const token = genToken(userUpdate);
                 res.status(200).json({message:"User Updated Successfully",token:token})

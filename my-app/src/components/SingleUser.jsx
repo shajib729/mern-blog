@@ -54,7 +54,7 @@ const SingleUser = () => {
                                     <Link className="title" to={`/post/${post._id}`}><h1>{post.title}</h1></Link>
                                 </div>
                                 <div className="post_thumb">
-                                    <img src={`../images/${post.image}`} alt="Can't get post image." />
+                                    <img src={`${post.image}`} alt="Can't get post image." />
                                 </div>
                                 {/* <div className="post_body" dangerouslySetInnerHTML={{__html: post.body}} /> */}
                             </div>

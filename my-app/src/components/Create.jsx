@@ -17,6 +17,8 @@ const Create = () => {
     const [currentImage, setCurrentImage] = useState("Choose Image")
     const [imagePreview, setImagePreview] = useState('');
 
+    const [cloudImage, setCloudeImage] = useState()
+    
     const history =useHistory()
 
     const fileHandle = (e) => {
@@ -29,6 +31,8 @@ const Create = () => {
                 setImagePreview(reader.result);
             }
             reader.readAsDataURL(e.target.files[0])
+            
+            setCloudeImage(e.target.files[0]);
         }
     }
 
@@ -60,11 +64,23 @@ const Create = () => {
         
         const {title,description,image}=state
         e.preventDefault()
+        
+        const getImgUrl = new FormData()
+        getImgUrl.append('file',cloudImage)
+        getImgUrl.append('upload_preset',"shajib-cloud")
+        getImgUrl.append('cloud_name', "shajib")
 
-        console.log(image);
+        let resImg=await fetch('https://api.cloudinary.com/v1_1/shajib/image/upload', {
+            method: "post",
+            heades: {
+              'Content-Type':"application/json"  
+            },
+            body:getImgUrl
+        })
+        const dataImg=await resImg.json()
 
         const formData = new FormData()
-        formData.append("image", image)
+        formData.append("image", dataImg.url)
         formData.append('title',title)
         formData.append('description',description)
         formData.append('body',value)

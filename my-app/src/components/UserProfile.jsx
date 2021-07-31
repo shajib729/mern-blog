@@ -13,18 +13,18 @@ const UserProfile = () => {
     const [state, setState] = useState({image:""})
     const [imagePreview, setImagePreview] = useState();
 
-    const handleFileChange = (e) => {
-        if (e.target.files.length !== 0) {
+    // const handleFileChange = (e) => {
+    //     if (e.target.files.length !== 0) {
          
-            setState({[e.target.name]:e.target.files[0]});
+    //         setState({[e.target.name]:e.target.files[0]});
             
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImagePreview(reader.result);
-            }
-            reader.readAsDataURL(e.target.files[0])   
-        }
-    }
+    //         const reader = new FileReader();
+    //         reader.onloadend = () => {
+    //             setImagePreview(reader.result);
+    //         }
+    //         reader.readAsDataURL(e.target.files[0])   
+    //     }
+    // }
 
     const fetchData = async () => {
         const res = await fetch(`/getUser/${user._id}`, {
@@ -49,7 +49,7 @@ const UserProfile = () => {
                 <Link to="/user-edit">Edit Profile</Link>
             </div>
             <label htmlFor="profile_img" className="profile_image">
-                <img src={data.image?`../images/${data.image}`:profile} alt="profile" />
+                <img src={data.image?`${data.image}`:profile} alt="profile" />
             </label>
             <div className="userName">
                 <p>Username : </p><p>{data.userName}</p>

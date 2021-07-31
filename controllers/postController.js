@@ -8,54 +8,63 @@ const { body, validationResult } = require("express-validator")
 const { htmlToText } = require('html-to-text');
 
 const createPost =async (req, res,next) => {
-    console.log(req.files);
-    const { title, body, description, slug, id, name } = req.body;
+    // console.log(req.files);
+    const { title, body, description, slug, id, name,image } = req.body;
 
-    if (!title) {
-        res.status(400).json({error:"Title is required"})
-    }
-    if (!body) {
-        res.status(400).json({error:"Body is required"})
-    }
-    if (!description) {
-        res.status(400).json({error:"Description is required"})
-    }
-    if (!slug) {
-        res.status(400).json({error:"Slug is required"})
-    }
-
-    if (req.files) {
+    if ( title && body && description && slug &&image) {
         
-        const { mimetype } = req.files.image
-        const extension = mimetype.split('/')[1]
-        // console.log(extension);
-
-        if (extension == 'jpg' || extension == 'jpeg' || extension == 'png') {
-            // res.status(200).json({ message: "Post successfully created" })            
-            try {
-                const checkSlug = await Post.findOne({ slug })
-                const userData=await User.findOne({_id:id})
-                // console.log(userData);
-                if (checkSlug) {
-                    res.status(400).json({error:"Post url should be unique"})
-                } else if(userData) {
-                    // console.log(title, body, req.files.image.name , description, slug);
-                    const newPost = await Post.create({title, body, image:req.files.image.name, description, slug,userId:id,userName:name})
-                    console.log(newPost);
-                    res.status(200).json({ message: "Post successfully created" })
-                    next()
-                } else {
-                    res.status(400).json({ error:"Login First"})
-                }
-            }catch (err) {
-                    console.log('error  ',err);
-                    res.status(400).json(err.message)
-                }
-        }else {
-            res.status(400).json({error:`${extension} is not accepted extension`})
+        const newPost = await Post.create({ title, body, image: image, description, slug, userId: id, userName: name })
+        if (newPost) {
+            res.status(200).json({ message: "Post successfully created" })
+        } else {
+            res.status(400).json({ message: "Fail to create Post" })
         }
-    }else {
-        res.status(400).json({error:"Image is required"})
+        
+        // const { mimetype } = req.body.image
+        // const extension = mimetype.split('/')[1]
+        // // console.log(extension);
+
+        // if (extension == 'jpg' || extension == 'jpeg' || extension == 'png') {
+        //     // res.status(200).json({ message: "Post successfully created" })            
+        //     try {
+        //         const checkSlug = await Post.findOne({ slug })
+        //         const userData=await User.findOne({_id:id})
+        //         // console.log(userData);
+        //         if (checkSlug) {
+        //             res.status(400).json({error:"Post url should be unique"})
+        //         } else if(userData) {
+        //             // console.log(title, body, req.files.image.name , description, slug);
+        //             const newPost = await Post.create({title, body, image:req.files.image.name, description, slug,userId:id,userName:name})
+        //             // console.log(newPost);
+        //             res.status(200).json({ message: "Post successfully created" })
+        //             next()
+        //         } else {
+        //             res.status(400).json({ error:"Login First"})
+        //         }
+        //     }catch (err) {
+        //             console.log('error  ',err);
+        //             res.status(400).json(err.message)
+        //         }
+        // }else {
+        //     res.status(400).json({error:`${extension} is not accepted extension`})
+        // }
+    } else {
+        
+        if (!title) {
+            res.status(400).json({error:"Title is required"})
+        }
+        if (!body) {
+            res.status(400).json({error:"Body is required"})
+        }
+        if (!description) {
+            res.status(400).json({error:"Description is required"})
+        }
+        if (!slug) {
+            res.status(400).json({error:"Slug is required"})
+        }
+        if (!image) {
+            res.status(400).json({error:"Post Image is required"})
+        }
     }
 
 }
@@ -126,9 +135,10 @@ const updateValidations = [
 
 // edit post 
 const editPost =async (req, res,next) => {
-    console.log(req.files)
-    console.log(req.body)
-    const { title, body, description } = req.body
+    // console.log(req.files)
+    // console.log(req.body)
+    const { title, body, description, imageUrl } = req.body
+    // console.log(imageUrl);
     const errors = validationResult(req)
     if (!errors.isEmpty()) {
         res.status(400).json({ error: errors.formatWith(formatter).mapped() })
@@ -137,9 +147,9 @@ const editPost =async (req, res,next) => {
         try {
             
             if (req.files) {
-                const updateImage = await Post.findByIdAndUpdate({ _id: req.params.id }, {image:req.files.image.name })
+                const updateImage = await Post.findByIdAndUpdate({ _id: req.params.id }, {image:imageUrl})
                 if (updateImage) {
-                    console.log(updateImage);
+                    // console.log(updateImage);
                     res.status(200).json({ message: "Post is succesfully updated" })
                     next()
                 }
@@ -147,7 +157,7 @@ const editPost =async (req, res,next) => {
             
             const updateData = await Post.findByIdAndUpdate({ _id: req.params.id }, { title, body, description})
             if (updateData) {
-                console.log(updateData);
+                // console.log(updateData);
                 res.status(200).json({ message: "Post is succesfully updated" })
             }
 
@@ -160,7 +170,7 @@ const editPost =async (req, res,next) => {
 
 // delete post 
 const deletePost =async (req, res) => {
-    console.log(req.params)
+    // console.log(req.params)
     try {
         const postId = req.params.id
         if (postId) {
@@ -181,13 +191,13 @@ const deletePost =async (req, res) => {
 // fetch post to show in post page 
 const post =async (req, res) => {
     const id = req.params.id
-    console.log(id);
+    // console.log(id);
 
     try {
         if (id) {
     
             const post = await Post.findOne({_id:id })
-            console.log(post);
+            // console.log(post);
             res.status(200).json({message:post})
         
         } else {

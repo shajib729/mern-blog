@@ -6,26 +6,26 @@ const path=require('path')
 const { register, registerValidations, login, loginValidations, update, sendData,users,user } = require("../controllers/userControllers")
 
 
-const imageHandle = (req, res,next)=>{
+// const imageHandle = (req, res,next)=>{
        
-    if (req.files) {
-        const file = req.files.image;
-        const fileDir = path.join(__dirname, '../my-app/public/images', file.name)
+//     if (req.files) {
+//         const file = req.files.image;
+//         const fileDir = path.join(__dirname, '../my-app/public/images', file.name)
 
-        file.mv(fileDir, err=> {
-            if (err) {
-                console.error(err);
-                res.status(400).json({error:"Fail image"});
-                // next()
-            } else {
-                next()
-            }
-        })
-    } else {
-        next()
-        // res.status(400).json({error:"Image is required"});
-    }
-}
+//         file.mv(fileDir, err=> {
+//             if (err) {
+//                 console.error(err);
+//                 res.status(400).json({error:"Fail image"});
+//                 // next()
+//             } else {
+//                 next()
+//             }
+//         })
+//     } else {
+//         next()
+//         // res.status(400).json({error:"Image is required"});
+//     }
+// }
 
 
 
@@ -39,6 +39,6 @@ router.get('/userss', users)
 
 router.get('/user/:userName', user)
 
-router.patch('/editUser/:id', update,imageHandle)
+router.patch('/editUser/:id', update)
 
 module.exports= router

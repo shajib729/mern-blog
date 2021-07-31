@@ -23,7 +23,7 @@ export const Home = () => {
 
     useEffect(() => {
         getPosts()
-    },[])
+    }, [])
 
     return (
         <section className="home_section container mt-100">
@@ -42,7 +42,7 @@ export const Home = () => {
                         post.image ? (
                             <div className="card">
                             <div className="post-img">
-                                <img src={`../images/${post.image}`} alt="Can't get post image." />
+                                <img src={`${post.image}`} alt="Can't get post image." />
                             </div>
                             <div className="time">
                                 {moment(post.updatedAt).fromNow()}
